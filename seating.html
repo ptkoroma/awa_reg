@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VIP Seating View</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand-lockup">
+        <div class="logo-frame" id="logoFrame">
+          <span>VIP</span>
+        </div>
+        <div>
+          <p class="eyebrow">Graphical Seating</p>
+          <h1 id="eventTitle">VIP Seating View</h1>
+        </div>
+      </div>
+      <div class="search-shell">
+        <span aria-hidden="true">⌕</span>
+        <input id="globalSearchInput" placeholder="Search guests, tables, seats, categories, statuses..." />
+      </div>
+      <div class="header-actions">
+        <a class="ghost-link" href="index.html">Registration</a>
+        <a class="ghost-link" href="checkin.html">Fast Check-in</a>
+        <a class="ghost-link" href="analytics.html">Analytics</a>
+        <button class="ghost-button" id="refreshButton" type="button">Refresh</button>
+        <button class="ghost-button" id="fullscreenButton" type="button">Fullscreen</button>
+        <button class="primary-button" id="printButton" type="button">Print Seating</button>
+      </div>
+    </header>
+
+    <main class="seating-shell">
+      <section class="seating-summary" id="seatingSummary" aria-label="Seating summary"></section>
+      <section class="color-legend" id="colorLegend" aria-label="Table color legend"></section>
+      <section class="table-tools seating-tools" aria-label="Seating table filters">
+        <div>
+          <p class="eyebrow">Tables</p>
+          <h2>Seating Layout</h2>
+        </div>
+        <select id="tableOccupancyFilter" aria-label="Filter tables by occupancy">
+          <option value="all">All tables</option>
+          <option value="full">Full tables only</option>
+          <option value="open">Open seats only</option>
+        </select>
+      </section>
+      <section class="floor-plan" id="floorPlan" aria-label="Graphical table and seat assignments"></section>
+    </main>
+
+    <script src="vip-db.js"></script>
+    <script src="seating.js"></script>
+  </body>
+</html>

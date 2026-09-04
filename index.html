@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VIP Guest Registration</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="dashboard-layout">
+      <aside class="sidebar" aria-label="Staff navigation">
+        <div class="sidebar-brand">
+          <div class="logo-frame" id="logoFrame">
+            <span>VIP</span>
+          </div>
+          <strong>GuestDesk</strong>
+        </div>
+        <nav class="sidebar-nav">
+          <a class="is-active" href="index.html">Dashboard</a>
+          <a href="#guestListHeading">Guests</a>
+          <a href="#tablesBoard">Tables</a>
+          <a href="checkin.html">Fast Check-in</a>
+          <a href="seating.html">Seating View</a>
+          <a href="analytics.html">Analytics</a>
+        </nav>
+        <div class="sidebar-note">
+          <strong>VIP Seating</strong>
+          <span>Local private check-in console</span>
+        </div>
+      </aside>
+
+      <div class="dashboard-main">
+        <header class="app-header">
+          <div class="search-shell">
+            <span aria-hidden="true">⌕</span>
+            <input id="globalSearchInput" placeholder="Search guests, tables, seats, categories, statuses..." />
+          </div>
+          <div class="header-actions">
+            <a class="ghost-link" href="checkin.html">Fast Check-in</a>
+            <a class="ghost-link" href="seating.html">Seating View</a>
+            <a class="ghost-link" href="analytics.html">Analytics</a>
+            <button class="ghost-button" id="undoButton" type="button" disabled>Undo</button>
+            <button class="ghost-button" id="printButton" type="button">Print Tables</button>
+            <button class="primary-button" id="exportButton" type="button">Export CSV</button>
+          </div>
+        </header>
+
+        <main class="app-shell">
+          <section class="page-title">
+            <div>
+              <p class="eyebrow">Event Staff Console</p>
+              <h1 id="eventTitle">VIP Guest Registration</h1>
+            </div>
+            <span class="capacity-pill">12 seats per table · 25 tables max</span>
+          </section>
+
+          <section class="panel registration-panel" aria-labelledby="registerHeading">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Registration</p>
+                <h2 id="registerHeading">Add VIP Guest</h2>
+              </div>
+            </div>
+
+            <form id="guestForm" class="guest-form">
+              <label>
+                Full name
+                <input id="guestName" autocomplete="off" required placeholder="Guest full name" />
+              </label>
+
+              <label>
+                Table
+                <select id="tableSelect" required></select>
+              </label>
+
+              <label>
+                VIP category
+                <select id="categorySelect"></select>
+              </label>
+
+              <label class="full-field">
+                Notes
+                <textarea id="guestNotes" maxlength="300" placeholder="Dietary needs, escort details, or staff notes"></textarea>
+              </label>
+
+              <div class="form-actions">
+                <button class="primary-button" type="submit">Register Guest</button>
+                <label class="inline-check">
+                  <input id="checkInOnAdd" type="checkbox" />
+                  Check in now
+                </label>
+              </div>
+            </form>
+
+            <div class="divider"></div>
+
+            <form id="tableForm" class="compact-form">
+              <label>
+                New table name
+                <input id="tableName" autocomplete="off" placeholder="Sponsors, Honorees, Table A" />
+              </label>
+              <button class="secondary-button" type="submit">Add Table</button>
+            </form>
+
+            <div class="divider"></div>
+
+            <details class="settings-box">
+              <summary>Event Branding</summary>
+              <form id="settingsForm" class="settings-form">
+                <label>
+                  Event name
+                  <input id="eventNameInput" placeholder="VIP Guest Registration" />
+                </label>
+                <label>
+                  Logo image
+                  <input id="logoInput" accept="image/*" type="file" />
+                </label>
+                <div class="form-actions">
+                  <button class="secondary-button" type="submit">Save Branding</button>
+                  <button class="ghost-button" id="clearLogoButton" type="button">Clear Logo</button>
+                </div>
+              </form>
+            </details>
+          </section>
+
+          <section class="panel import-panel" aria-labelledby="importHeading">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Bulk Entry</p>
+                <h2 id="importHeading">Import Guest List</h2>
+              </div>
+            </div>
+            <p class="muted">
+              Import CSV or Excel files with columns like Full Name, Table, Seat, VIP Category, Status, and Notes.
+            </p>
+            <div class="file-drop">
+              <input id="importFile" accept=".csv,.tsv,.txt,.xlsx,.xls" type="file" />
+              <span id="importStatus">No file selected</span>
+            </div>
+            <div class="import-preview" id="importPreview" hidden>
+              <div class="preview-heading">
+                <strong id="previewTitle">Import Preview</strong>
+                <span id="previewCount"></span>
+              </div>
+              <div class="preview-list" id="previewList"></div>
+              <div class="form-actions">
+                <button class="primary-button" id="confirmImportButton" type="button">Confirm Import</button>
+                <button class="ghost-button" id="cancelImportButton" type="button">Cancel</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel backup-panel" aria-labelledby="backupHeading">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Database</p>
+                <h2 id="backupHeading">Backup & Restore</h2>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="ghost-button" id="backupButton" type="button">Download Backup</button>
+              <label class="file-button">
+                Restore Backup
+                <input id="restoreFile" accept=".json,application/json" type="file" />
+              </label>
+              <button class="danger-button" id="clearDataButton" type="button">Clear Event Data</button>
+            </div>
+          </section>
+
+          <section class="summary-grid" id="summaryGrid" aria-label="Dashboard summary"></section>
+
+          <section class="conflict-panel" id="conflictPanel" aria-label="Assignment warnings" hidden></section>
+
+          <section class="panel list-panel" aria-labelledby="guestListHeading">
+            <div class="panel-heading list-heading">
+              <div>
+                <p class="eyebrow">Guests</p>
+                <h2 id="guestListHeading">VIP List</h2>
+              </div>
+              <span id="guestCount" class="count-badge">0 guests</span>
+            </div>
+
+            <div class="filters">
+              <input id="searchInput" placeholder="Search guest details" />
+              <select id="filterTable"></select>
+              <select id="filterStatus">
+                <option value="all">All statuses</option>
+                <option value="not-arrived">Not Arrived</option>
+                <option value="checked-in">Checked In</option>
+                <option value="seated">Seated</option>
+                <option value="no-show">No Show</option>
+              </select>
+            </div>
+
+            <div class="guest-list" id="guestList"></div>
+          </section>
+
+          <section class="table-tools" aria-label="Table filters">
+            <div>
+              <p class="eyebrow">Tables</p>
+              <h2>Table Assignments</h2>
+            </div>
+            <select id="tableOccupancyFilter" aria-label="Filter tables by occupancy">
+              <option value="all">All tables</option>
+              <option value="full">Full tables only</option>
+              <option value="open">Open seats only</option>
+            </select>
+          </section>
+
+          <section class="tables-board" id="tablesBoard" aria-label="Table assignments"></section>
+        </main>
+      </div>
+    </div>
+
+    <template id="guestTemplate">
+          <article class="guest-row">
+            <div>
+              <input class="guest-name-input" aria-label="Guest full name" />
+              <span class="guest-meta"></span>
+              <textarea class="guest-notes-input" maxlength="300" aria-label="Guest notes" placeholder="Add note"></textarea>
+            </div>
+            <div class="row-actions">
+              <select class="move-select" aria-label="Move guest to another table"></select>
+              <select class="seat-select" aria-label="Seat number"></select>
+              <select class="category-select" aria-label="VIP category"></select>
+          <select class="status-select" aria-label="Guest status"></select>
+          <button class="check-button" type="button">Check In</button>
+          <button class="danger-button" type="button">Remove</button>
+        </div>
+      </article>
+    </template>
+
+    <script src="vip-db.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

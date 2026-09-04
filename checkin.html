@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VIP Fast Check-in</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header checkin-header">
+      <div class="brand-lockup">
+        <div class="logo-frame" id="logoFrame">
+          <span>VIP</span>
+        </div>
+        <div>
+          <p class="eyebrow">Door Staff</p>
+          <h1 id="eventTitle">Fast Check-in</h1>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a class="ghost-link" href="index.html">Dashboard</a>
+        <a class="ghost-link" href="seating.html">Seating View</a>
+        <a class="ghost-link" href="analytics.html">Analytics</a>
+      </div>
+    </header>
+
+    <main class="checkin-shell">
+      <section class="checkin-hero">
+        <label>
+          Search guest
+          <input id="checkinSearch" autofocus autocomplete="off" placeholder="Search guests, tables, seats, categories, statuses..." />
+        </label>
+        <div class="checkin-stats" id="checkinStats"></div>
+      </section>
+
+      <section class="checkin-list" id="checkinList" aria-label="Fast check-in guest list"></section>
+    </main>
+
+    <script src="vip-db.js"></script>
+    <script src="checkin.js"></script>
+  </body>
+</html>

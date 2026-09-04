@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VIP Analytics</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header analytics-header">
+      <div class="brand-lockup">
+        <div class="logo-frame" id="logoFrame">
+          <span>VIP</span>
+        </div>
+        <div>
+          <p class="eyebrow">Event Data</p>
+          <h1 id="eventTitle">VIP Analytics</h1>
+        </div>
+      </div>
+      <div class="search-shell">
+        <span aria-hidden="true">⌕</span>
+        <input id="globalSearchInput" placeholder="Search guests, tables, seats, categories, statuses..." />
+      </div>
+      <div class="header-actions">
+        <a class="ghost-link" href="index.html">Dashboard</a>
+        <a class="ghost-link" href="checkin.html">Fast Check-in</a>
+        <a class="ghost-link" href="seating.html">Seating View</a>
+        <label class="live-toggle">
+          <input id="liveModeToggle" type="checkbox" />
+          Live
+        </label>
+        <button class="ghost-button" id="refreshButton" type="button">Refresh</button>
+        <button class="primary-button" id="printButton" type="button">Print Charts</button>
+      </div>
+    </header>
+
+    <main class="analytics-shell">
+      <section class="analytics-hero" aria-labelledby="analyticsOverviewHeading">
+        <div>
+          <p class="eyebrow">Overview</p>
+          <h2 id="analyticsOverviewHeading">Event Readiness</h2>
+          <span id="searchResultCount">Showing all registration data</span>
+        </div>
+        <div class="readiness-meter" id="readinessMeter" aria-label="Event readiness score"></div>
+      </section>
+
+      <section class="analytics-summary" id="analyticsSummary" aria-label="Analytics summary"></section>
+
+      <section class="analytics-grid" aria-label="Registration charts">
+        <article class="chart-panel status-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Status</p>
+              <h2>Registration Flow</h2>
+            </div>
+          </div>
+          <div class="donut-chart" id="statusDonut" aria-label="Guest status distribution"></div>
+          <div class="chart-legend" id="statusLegend"></div>
+        </article>
+
+        <article class="chart-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">VIP Types</p>
+              <h2>Category Split</h2>
+            </div>
+          </div>
+          <div class="bar-list" id="categoryBars"></div>
+        </article>
+
+        <article class="chart-panel wide-chart">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Capacity</p>
+              <h2>Table Occupancy</h2>
+            </div>
+          </div>
+          <div class="occupancy-chart" id="occupancyChart"></div>
+        </article>
+
+        <article class="chart-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Seats</p>
+              <h2>Open Seats by Table</h2>
+            </div>
+          </div>
+          <div class="bar-list" id="openSeatBars"></div>
+        </article>
+
+        <article class="chart-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Check-in</p>
+              <h2>Activity by Hour</h2>
+            </div>
+          </div>
+          <div class="timeline-chart" id="checkinTimeline"></div>
+        </article>
+
+        <article class="chart-panel wide-chart">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Tables</p>
+              <h2>Capacity Heat Map</h2>
+            </div>
+          </div>
+          <div class="table-heatmap" id="tableHeatmap"></div>
+        </article>
+
+        <article class="chart-panel warning-chart">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Warnings</p>
+              <h2>Readiness Issues</h2>
+            </div>
+            <span class="count-badge" id="warningCount">0</span>
+          </div>
+          <div class="warning-list" id="warningList"></div>
+        </article>
+
+        <article class="chart-panel drilldown-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Details</p>
+              <h2>Guest Drilldown</h2>
+            </div>
+          </div>
+          <div class="guest-drilldown" id="guestDrilldown"></div>
+        </article>
+      </section>
+    </main>
+
+    <script src="vip-db.js"></script>
+    <script src="analytics.js"></script>
+  </body>
+</html>
