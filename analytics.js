@@ -430,7 +430,7 @@ function renderDrilldown() {
       <div><dt>Category</dt><dd>${categoryLabel(guest.category)}</dd></div>
       <div><dt>Status</dt><dd>${statusLabel(guest.status)}</dd></div>
       <div><dt>Checked In</dt><dd>${guest.checkedInAt ? escapeHtml(formatDateTime(guest.checkedInAt)) : "-"}</dd></div>
-      <div><dt>Notes</dt><dd>${escapeHtml(guest.notes || "-")}</dd></div>
+      <div><dt>Notes</dt><dd>${guest.notes ? `<mark class="staff-note-highlight">${escapeHtml(guest.notes)}</mark>` : "-"}</dd></div>
     </dl>
     <div class="drilldown-list">
       ${guestButtons}

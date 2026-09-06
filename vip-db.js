@@ -136,8 +136,28 @@ function normalizeVipSession(payload) {
   };
 }
 
+function decodeVipJwt(token) {
+  try {
+    const payload = token.split(".")[1];
+    const normalized = payload.replace(/-/g, "+").replace(/_/g, "/");
+    const padded = normalized.padEnd(Math.ceil(normalized.length / 4) * 4, "=");
+    return JSON.parse(atob(padded));
+  } catch {
+    return {};
+  }
+}
+
+function isAuthenticatedVipSession(session) {
+  return decodeVipJwt(session?.accessToken || "").role === "authenticated";
+}
+
 function hasValidVipSession(session) {
-  return Boolean(session?.accessToken && session?.refreshToken && session.expiresAt > Date.now());
+  return Boolean(
+    session?.accessToken &&
+    session?.refreshToken &&
+    session.expiresAt > Date.now() &&
+    isAuthenticatedVipSession(session)
+  );
 }
 
 async function refreshVipSession(config, session) {
@@ -158,6 +178,11 @@ async function refreshVipSession(config, session) {
   }
 
   const nextSession = normalizeVipSession(await response.json());
+  if (!isAuthenticatedVipSession(nextSession)) {
+    clearStoredVipSession();
+    return null;
+  }
+
   writeStoredVipSession(nextSession);
   return nextSession;
 }
@@ -177,6 +202,10 @@ async function signInVipStaff(config, email, password) {
   }
 
   const session = normalizeVipSession(await response.json());
+  if (!isAuthenticatedVipSession(session)) {
+    throw new Error("That account is not allowed to access the VIP staff console.");
+  }
+
   writeStoredVipSession(session);
   return session;
 }

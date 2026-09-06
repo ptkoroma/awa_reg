@@ -49,7 +49,7 @@ Open `checkin.html` for a fast tablet-friendly door check-in view.
 ## Features
 
 - Add VIP guests by full name.
-- Add private staff notes for each VIP.
+- Highlight private staff notes for each VIP in neon yellow.
 - Edit guest names after registration.
 - Assign VIP categories: `Sponsor` or `Head of Table`.
 - Warn staff before adding duplicate guest names.

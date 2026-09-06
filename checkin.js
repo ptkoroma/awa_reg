@@ -181,7 +181,7 @@ function renderList() {
       row.innerHTML = `
         <div>
           <strong>${escapeHtml(guest.name)}</strong>
-          <span>${escapeHtml(table.name)} · Seat ${displaySeatNumber(guest) || "-"} · ${categoryLabel(guest.category)} · ${statusLabel(guest.status)}${guest.checkedInAt ? ` · ${formatTimestamp(guest.checkedInAt)}` : ""}${guest.notes ? ` · ${escapeHtml(guest.notes)}` : ""}</span>
+          <span>${escapeHtml(table.name)} · Seat ${displaySeatNumber(guest) || "-"} · ${categoryLabel(guest.category)} · ${statusLabel(guest.status)}${guest.checkedInAt ? ` · ${formatTimestamp(guest.checkedInAt)}` : ""}${guest.notes ? ` · <mark class="staff-note-highlight">${escapeHtml(guest.notes)}</mark>` : ""}</span>
         </div>
         <div class="status-button-group">
           ${STATUSES.map((status) => `

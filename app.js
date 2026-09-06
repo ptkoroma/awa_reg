@@ -676,7 +676,7 @@ function renderTablesBoard() {
       const guest = guests.find((item) => item.seatNumber === seatNumber);
       if (!guest) return `<li class="empty-seat">${seatNumber}. Open seat</li>`;
 
-      const note = guest.notes ? `<small>${escapeHtml(guest.notes)}</small>` : "";
+      const note = guest.notes ? `<small class="staff-note-highlight">${escapeHtml(guest.notes)}</small>` : "";
       return `
         <li class="assigned-seat">
           <span>${seatNumber}. ${escapeHtml(guest.name)}${note}</span>

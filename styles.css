@@ -1252,8 +1252,27 @@ select:disabled {
   width: min(340px, 100%);
   min-height: 44px;
   margin-top: 8px;
+  border-color: #e6d400;
+  background: #fff84d;
+  color: #141820;
   border-radius: 12px;
   font-size: 0.88rem;
+}
+
+.staff-note-highlight {
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  margin-left: 6px;
+  border-radius: 6px;
+  background: #fff500;
+  color: #141820;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding: 2px 6px;
+  font-size: 0.84rem;
+  font-weight: 850;
+  line-height: 1.35;
 }
 
 .guest-meta {
