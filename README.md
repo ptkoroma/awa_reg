@@ -1,6 +1,6 @@
 # VIP Guest Registration
 
-A browser database-backed event staff app for registering VIP guests, assigning them manually to named tables, and enforcing 12 seats per table across up to 25 tables.
+A browser database-backed event staff app for registering VIP guests, assigning them manually to named tables, and enforcing 12 seats per table across up to 27 tables.
 
 ## Use
 
@@ -56,7 +56,7 @@ Open `checkin.html` for a fast tablet-friendly door check-in view.
 - Assign each guest to one named table.
 - Assign and edit seat numbers from 1-12.
 - Hard block when a table reaches 12 guests.
-- Limit each event to 25 tables.
+- Limit each event to 27 tables.
 - Show assignment warnings for duplicate names, missing seats, duplicate seats, full tables without a head, and tables with more than one Head of Table.
 - Undo the last dashboard change.
 - Add custom table names such as `Sponsors`, `Honorees`, or sponsor names.
@@ -75,7 +75,7 @@ Open `checkin.html` for a fast tablet-friendly door check-in view.
 - Print table assignments.
 - View and print a graphical table layout with 12 seats per table.
 - Drag VIPs between tables from the graphical seating view.
-- Show a color legend for table colors on the seating view.
+- Click color legend items to jump to the matching color-coded table on the seating view.
 - Use fullscreen mode for the graphical seating view.
 - Color-code tables using the event palette, including Purple, Gold, Kelly Green, Neon colors, Silver, White, and Pantone Purple.
 - Save event name and logo in the browser database.

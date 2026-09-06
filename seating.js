@@ -190,17 +190,21 @@ function renderLegend(state) {
       ${state.tables.map((table, index) => {
         const color = tableColor(index);
         return `
-          <article class="legend-item">
+          <button class="legend-item" data-table-id="${escapeHtml(table.id)}" type="button" aria-label="Go to ${escapeHtml(table.name)} color-coded ${escapeHtml(color.name)} table">
             <span class="legend-swatch" style="--table-color: ${color.value}; --table-border: ${color.name === "White" ? "#8f805e" : color.value};"></span>
             <div>
               <strong>${escapeHtml(table.name)}</strong>
-              <span>${escapeHtml(color.name)}</span>
+              <span>${escapeHtml(color.name)} · ${escapeHtml(color.value)}</span>
             </div>
-          </article>
+          </button>
         `;
       }).join("")}
     </div>
   `;
+
+  elements.colorLegend.querySelectorAll(".legend-item").forEach((item) => {
+    item.addEventListener("click", () => focusTableFromLegend(item.dataset.tableId));
+  });
 }
 
 function renderFloorPlan(state) {
@@ -220,7 +224,10 @@ function renderFloorPlan(state) {
     const color = tableColor(tableIndex);
     const tableElement = document.createElement("article");
     tableElement.className = "visual-table";
+    tableElement.id = `table-${table.id}`;
     tableElement.dataset.tableId = table.id;
+    tableElement.dataset.tableColor = color.value;
+    tableElement.dataset.tableColorName = color.name;
     setTableColor(tableElement, color);
 
     tableElement.innerHTML = `
@@ -247,6 +254,19 @@ function renderFloorPlan(state) {
     });
 
     elements.floorPlan.append(tableElement);
+  });
+}
+
+function focusTableFromLegend(tableId) {
+  const table = [...elements.floorPlan.querySelectorAll(".visual-table")]
+    .find((item) => item.dataset.tableId === tableId);
+  if (!table) return;
+
+  table.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
+  table.classList.remove("is-legend-target");
+  window.requestAnimationFrame(() => {
+    table.classList.add("is-legend-target");
+    window.setTimeout(() => table.classList.remove("is-legend-target"), 1800);
   });
 }
 

@@ -9,7 +9,7 @@ const VIP_CATEGORIES = [
   { value: "sponsor", label: "Sponsor" },
   { value: "head-of-table", label: "Head of Table" }
 ];
-const MAX_TABLES = 25;
+const MAX_TABLES = 27;
 const MAX_GUESTS = 1000;
 const MAX_NAME_LENGTH = 120;
 const MAX_TABLE_NAME_LENGTH = 80;

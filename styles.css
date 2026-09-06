@@ -1442,12 +1442,21 @@ button:disabled {
 .legend-item {
   display: flex;
   align-items: center;
+  width: 100%;
   gap: 10px;
   min-height: 54px;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: #fbfcff;
+  color: var(--ink);
   padding: 10px;
+  text-align: left;
+}
+
+.legend-item:hover {
+  border-color: var(--table-border, var(--accent));
+  background: #ffffff;
+  transform: translateY(-1px);
 }
 
 .legend-swatch {
@@ -1498,6 +1507,12 @@ button:disabled {
   border-color: var(--accent);
   box-shadow: 0 20px 55px rgba(47, 107, 255, 0.18);
   transform: translateY(-2px);
+}
+
+.visual-table.is-legend-target {
+  border-color: var(--table-border, var(--accent));
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--table-color, var(--accent)) 24%, transparent), var(--shadow);
+  transform: translateY(-3px);
 }
 
 .visual-table-center {
